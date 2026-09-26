@@ -59,9 +59,28 @@ body {
 }
 
 .display {
-  min-height: 96px;
-  padding: 16px 12px 8px;
+  min-height: 110px;
+  padding: 12px 12px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   text-align: right;
+  direction: ltr;
+  overflow: hidden;
+}
+
+.expression {
+  min-height: 24px;
+  font-size: 20px;
+  font-weight: 300;
+  color: #8e8e93;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  direction: rtl; /* keep the tail of long expressions visible */
+}
+
+.result {
   font-size: 72px;
   font-weight: 200;
   line-height: 1;
@@ -128,9 +147,11 @@ body {
 }
 
 @media (max-width: 380px) {
-  .display {
+  .result {
     font-size: 56px;
-    min-height: 80px;
+  }
+  .expression {
+    font-size: 16px;
   }
   .key {
     height: 56px;
