@@ -91,9 +91,11 @@ function buildButtons(dispatch: React.Dispatch<Action>, state: CalcState): Butto
 export default function Calculator() {
   const [state, dispatch] = useReducer(reducer, {
     display: "0",
+    expression: "",
     previousValue: null,
     operator: null,
     waitingForOperand: false,
+    justEvaluated: false,
   });
 
   // Keyboard support.
@@ -129,7 +131,16 @@ export default function Calculator() {
         aria-atomic="true"
         data-testid="display"
       >
-        {state.display}
+        <div
+          className="expression"
+          data-testid="expression"
+          title={state.expression}
+        >
+          {state.expression || "\u00A0"}
+        </div>
+        <div className="result" data-testid="result">
+          {state.display}
+        </div>
       </div>
       <div className="keypad">
         {rows.flat().map((btn) => (
